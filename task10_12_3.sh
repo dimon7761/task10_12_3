@@ -77,7 +77,7 @@ services:
   nginx:
     image: $NGINX_IMAGE
     ports:
-      - 'VM1_EXTERNAL_IP:$NGINX_PORT:$NGINX_PORT'
+      - '$VM1_EXTERNAL_IP:$NGINX_PORT:$NGINX_PORT'
     volumes:
       - /srv/etc/nginx.conf:/etc/nginx/conf.d/default.conf:ro
       - $NGINX_LOG_DIR:/var/log/nginx
