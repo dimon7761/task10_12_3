@@ -55,7 +55,7 @@ cat docker/certs/root-ca.crt >> docker/certs/web.crt
 ######################## GEN NGINX.CONF #############################
 cat << EOF > docker/etc/nginx.conf
 server {
-        listen $VM1_EXTERNAL_IP:$NGINX_PORT;
+        listen $NGINX_PORT;
         ssl on;
         ssl_certificate /etc/ssl/certs/nginx/web.crt;
         ssl_certificate_key /etc/ssl/certs/nginx/web.key;
@@ -77,7 +77,7 @@ services:
   nginx:
     image: $NGINX_IMAGE
     ports:
-      - '$NGINX_PORT:$NGINX_PORT'
+      - 'VM1_EXTERNAL_IP:$NGINX_PORT:$NGINX_PORT'
     volumes:
       - /srv/etc/nginx.conf:/etc/nginx/conf.d/default.conf:ro
       - $NGINX_LOG_DIR:/var/log/nginx
